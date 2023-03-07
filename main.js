@@ -1,6 +1,9 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { UnsignedShort4444Type } from "three";
 
 // Setup
 
@@ -24,7 +27,7 @@ camera.position.setX(-3);
 
 renderer.render(scene, camera);
 
-// Tourus
+// Torus
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({
@@ -32,7 +35,7 @@ const material = new THREE.MeshStandardMaterial({
 });
 const torus = new THREE.Mesh(geometry, material);
 
-scene.add(torus);
+//scene.add(torus);
 
 // Lights
 
@@ -58,7 +61,7 @@ function addStar() {
 
   const [x, y, z] = Array(3)
     .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+    .map(() => THREE.MathUtils.randFloatSpread(250));
 
   star.position.set(x, y, z);
   scene.add(star);
@@ -71,14 +74,14 @@ const spaceTexture = new THREE.TextureLoader().load("space.png");
 scene.background = spaceTexture;
 
 // Avatar
-const quinnTexture = new THREE.TextureLoader().load("my portrait.jpeg");
+const slothTexture = new THREE.TextureLoader().load("sloth.jpg");
 
-const quinn = new THREE.Mesh(
+const sloth = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
-  new THREE.MeshBasicMaterial({ map: quinnTexture })
+  new THREE.MeshBasicMaterial({ map: slothTexture })
 );
 
-scene.add(quinn);
+scene.add(sloth);
 
 // Moon
 const moonTexture = new THREE.TextureLoader().load("moon.jpeg");
@@ -94,11 +97,58 @@ const moon = new THREE.Mesh(
 
 scene.add(moon);
 
+// Mars
+const marsTexture = new THREE.TextureLoader().load("mars.jpeg");
+
+const mars = new THREE.Mesh(
+  new THREE.SphereGeometry(5, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: marsTexture,
+    normalMap: normalTexture,
+  })
+);
+
+scene.add(mars);
+
+// Pencil
+const loader = new GLTFLoader();
+
+loader.load(
+  "simple_pencil/scene.gltf",
+  function (gltf) {
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
+
+// Shiba
+loader.load(
+  "shiba/scene.gltf",
+  function (gltf) {
+    gltf.scene.rotation.y = -(Math.PI / 7);
+    gltf.scene.position.x = 15;
+    gltf.scene.position.y = 20;
+    gltf.scene.scale.set(10, 10, 10);
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
+
 moon.position.z = 30;
 moon.position.setX(-10);
 
-quinn.position.z = -5;
-quinn.position.x = 2;
+mars.position.z = 50;
+mars.position.x = 15;
+mars.position.y = 5;
+
+sloth.position.z = -5;
+sloth.position.x = 2;
 
 // Scroll Animation
 
@@ -108,10 +158,14 @@ function moveCamera() {
   moon.rotation.y += 0.075;
   moon.rotation.z += 0.05;
 
-  quinn.rotation.y += 0.01;
-  quinn.rotation.z += 0.01;
+  mars.rotation.x += 0.05;
+  mars.rotation.y += 0.075;
+  mars.rotation.z += 0.05;
 
-  camera.position.z = t * -0.01;
+  sloth.rotation.y += 0.01;
+  sloth.rotation.z += 0.01;
+
+  camera.position.z = t * -0.05;
   camera.position.x = t * -0.0002;
   camera.position.y = t * -0.0002;
 }
@@ -129,6 +183,8 @@ function animate() {
   torus.rotation.z += 0.01;
 
   moon.rotation.x += 0.005;
+
+  mars.rotation.x += 0.005;
 
   //controls.update();
 
