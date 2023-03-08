@@ -146,6 +146,40 @@ loader.load(
   }
 );
 
+// Rubber Duck
+loader.load(
+  "rubber_duck/scene.gltf",
+  function (gltf) {
+    gltf.scene.rotation.y = Math.PI / 7;
+    gltf.scene.position.x = -15;
+    gltf.scene.position.y = -10;
+    gltf.scene.position.z = 70;
+    gltf.scene.scale.set(5, 5, 5);
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
+
+// Gaming Desk
+loader.load(
+  "low_poly_gaming_desk/scene.gltf",
+  function (gltf) {
+    gltf.scene.rotation.y = Math.PI / 7;
+    gltf.scene.position.x = -2;
+    gltf.scene.position.y = -0.25;
+    gltf.scene.position.z = 3;
+    // gltf.scene.scale.set(5, 5, 5);
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
+
 moon.position.z = 30;
 moon.position.setX(-10);
 
