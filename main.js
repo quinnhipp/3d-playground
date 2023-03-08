@@ -180,6 +180,23 @@ loader.load(
   }
 );
 
+// Gaming Desk
+loader.load(
+  "octane_rocket_league_car/scene.gltf",
+  function (gltf) {
+    gltf.scene.rotation.y = -(Math.PI / 7);
+    gltf.scene.position.x = -8;
+    gltf.scene.position.y = -3;
+    gltf.scene.position.z = 5;
+    gltf.scene.scale.set(0.05, 0.05, 0.05);
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
+
 moon.position.z = 30;
 moon.position.setX(-10);
 
