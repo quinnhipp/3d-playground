@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 // import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { UnsignedShort4444Type } from "three";
 
 // Setup
 
@@ -116,6 +115,12 @@ const loader = new GLTFLoader();
 loader.load(
   "simple_pencil/scene.gltf",
   function (gltf) {
+    gltf.scene.rotation.x = Math.PI / 4;
+    gltf.scene.rotation.y = Math.PI / 4;
+    gltf.scene.rotation.z = Math.PI / 4;
+    gltf.scene.position.x = -10;
+    gltf.scene.position.y = 3;
+    gltf.scene.position.z = 2;
     scene.add(gltf.scene);
   },
   undefined,
@@ -131,6 +136,7 @@ loader.load(
     gltf.scene.rotation.y = -(Math.PI / 7);
     gltf.scene.position.x = 15;
     gltf.scene.position.y = 20;
+    gltf.scene.position.z = -10;
     gltf.scene.scale.set(10, 10, 10);
     scene.add(gltf.scene);
   },
