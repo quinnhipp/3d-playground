@@ -197,6 +197,31 @@ loader.load(
   }
 );
 
+// Click Events
+
+const pointer = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
+
+const onMouseClick = (event) => {
+  // calculate pointer position in normalized device coordinates
+  // (-1 to +1) for both components
+  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(pointer, camera);
+  const intersects = raycaster.intersectObjects(scene.children);
+
+  // change color of the closest object intersecting the raycaster
+  var link = document.getElementById("object-info");
+  if (intersects.length > 0) {
+    //intersects[0].object.material.color.set(0xff0000);
+    link.className = "show";
+  } else {
+    link.className = "hidden";
+  }
+};
+window.addEventListener("click", onMouseClick);
+
 moon.position.z = 30;
 moon.position.setX(-10);
 

@@ -920,9 +920,9 @@
       "name": "Paint",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
-          0.0,
-          0.0,
-          0.0,
+          1.0,
+          1.0,
+          1.0,
           1.0
         ],
         "metallicFactor": 0.17764020458934385,
@@ -940,12 +940,12 @@
       "name": "Octane_Body",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
-          0.04825934533322086,
-          0.13103159993071328,
-          1.0,
+          0.162,
+          0.576,
+          0.148,
           1.0
         ],
-        "roughnessFactor": 0.28849720536059875
+        "roughnessFactor": 1.0
       }
     },
     {

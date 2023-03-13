@@ -80,3 +80,20 @@ blockquote p {
 .left {
   grid-column: 6 / 12;
 }
+
+.hidden {
+  /* visibility: hidden; */
+  display: none;
+  
+}
+
+.show {
+  visibility: visible;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  grid-column: 2 / span 9;
+  background-color: white;
+  color: black;
+}
